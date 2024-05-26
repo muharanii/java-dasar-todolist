@@ -5,7 +5,7 @@ public class AplikasiTodoList {
         public static java.util.Scanner scanner = new java.util.Scanner(System.in);
 
         public static void main(String[] args) {
-                testViewShowTodoList();
+                viewShowTodoList();
         }
 
         //menampilakn todo list
@@ -142,7 +142,7 @@ public class AplikasiTodoList {
                         System.out.println("2. Hapus");
                         System.out.println("x. Keluar");
         
-                        var input = input("pilih ; ");
+                        var input = input("pilih ");
                         if(input.equals("1")){
                                 viewAddTodoList();
                         }else if(input.equals("2")){
@@ -170,13 +170,55 @@ public class AplikasiTodoList {
         //Menampilkan view add todo list
 
         public static void viewAddTodoList(){
+                System.out.println("MENAMBAH TODOLIST");
 
+                var todo = input("Todo (x Jika Batal)");
+
+                if (todo.equals("x")){
+                        //batal
+                }else{
+                        addTodoList(todo);
+                }
+        }
+
+        public static void testViewAddTodoList(){
+                addTodoList("satu");
+                addTodoList("Dua");
+
+                viewAddTodoList();
+
+                showTodoList();
         }
 
         //menampilkan view menghapus todo list
 
         public static void viewRemoveTodoList(){
+                System.out.println("MENGHAPUS TODOLIST");
 
+                var number = input("Nomor yang Dihapus(x Jika Batal)");
+
+                if(number.equals("x")){
+                        //batal
+                }else{
+                    boolean success = removeTodoList(Integer.valueOf(number));
+                    if(!success){
+                        System.out.println("Gagal mengapus todolist : " +number);
+                    }
+                }
+        }
+
+        //testing viewRemoveTodolist
+
+        public static void testViewRemoveTodoList(){
+                addTodoList("satu");
+                addTodoList("dua");
+                addTodoList("tiga");
+
+                showTodoList();
+
+                viewRemoveTodoList();
+
+                showTodoList();
         }
 
 
